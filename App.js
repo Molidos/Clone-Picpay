@@ -1,15 +1,15 @@
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import TabNavigator from './src/navigation/TabNavigator';
 
-const Tab = createBottomTabNavigator();
+import HiddenProvider from './src/contexts/HiddenContext';
 
 export default function App() {
   return (
     <NavigationContainer>
-      <TabNavigator/>
+      <HiddenProvider>
+        <TabNavigator/>
+      </HiddenProvider>
     </NavigationContainer>
-    
   );
 }

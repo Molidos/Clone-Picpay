@@ -1,3 +1,5 @@
+import React, { useContext } from 'react'
+
 import {
     View,
     Text,
@@ -5,7 +7,7 @@ import {
     TouchableOpacity,
     Image
 } from 'react-native'
-import React from 'react'
+import { HiddenContext } from '../../../contexts/HiddenContext'
 
 export default function MainBlock({
     first_info,
@@ -13,6 +15,7 @@ export default function MainBlock({
     subjectTwo,
     buttonTitle,
 }) {
+    const {toogleHidden} = useContext(HiddenContext)
   return (
     <TouchableOpacity style={styles.container}>
         <View style={styles.containerFirstLine}>
@@ -26,7 +29,9 @@ export default function MainBlock({
                 </Text>
             </View>{/*Container_logo_email*/}
 
-            <TouchableOpacity>
+            <TouchableOpacity
+                onPress={toogleHidden}
+            >
                 <Image
                     source={require('./../../../../assets/images/eye.png')}
                     style={[styles.tinyLogo, styles.eyes]}

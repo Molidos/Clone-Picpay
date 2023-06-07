@@ -6,15 +6,16 @@ import {
     Image,
     TouchableOpacity
 } from 'react-native'
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import MainBlock from '../../components/HomeScreen/mainBlock/mainBlock'
 import ItemMenu from '../../components/HomeScreen/itensMenu/ItemMenu'
 import ItemSuggestion from '../../components/HomeScreen/ItemSuggest/ItemSuggestion'
 import ItemCard from '../../components/HomeScreen/itemCard/ItemCard'
+import { HiddenContext } from '../../contexts/HiddenContext'
 
 
 export default function Home() {
-  const [hidden, setHidden] = useState(false);
+  const {hidden} = useContext(HiddenContext)
   return (
     <ScrollView style={styles.container}>
     
@@ -24,12 +25,11 @@ export default function Home() {
         showsHorizontalScrollIndicator={false}
       >
 
-   
           {hidden ?
             <MainBlock
               first_info ='@jony.fernandes2'
               subject = 'Saldo em conta'
-              subjectTwo = 'R$ 1000'
+              subjectTwo = 'R$ 1000.00'
               buttonTitle = 'Extrato'
             />
             :
@@ -42,12 +42,22 @@ export default function Home() {
             />
           }
         <View style={styles.marginMainBlock}>
-          <MainBlock
-            first_info ='PicPay Card Débito'
-            subject = 'PicPay Card Débito'
-            subjectTwo = 'R$ ---------'
-            buttonTitle = 'Peça Já'
-          />
+          {hidden ?
+            <MainBlock
+              first_info ='PicPay Card Débito'
+              subject = 'PicPay Card Débito'
+              subjectTwo = 'R$ 1000.00'
+              buttonTitle = 'Peça Já'
+            />
+            :
+            <MainBlock
+              first_info ='PicPay Card Débito'
+              subject = 'PicPay Card Débito'
+              subjectTwo = 'R$ ---------'
+              buttonTitle = 'Peça Já'
+            
+            />
+          }
         </View>{/*margin main block */}
         
       </ScrollView>
